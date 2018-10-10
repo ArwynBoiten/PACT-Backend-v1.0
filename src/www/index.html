@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>ContractBroker API</title>
+
+        <!--CDN Imports-->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
+        <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+        <script type="text/javascript" src="dist/socketClient.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+        <style>
+            body {
+                background-color: #fff;
+                color: dimgrey;
+            }
+            div[class*="col-sm-"]
+            {
+                padding: 5px 5px 5px 5px;
+                margin-top:30px;
+                margin-left: 25px;
+                background-color: #f0f0f0;
+            }
+
+            .qrcoderef1, .qrcoderef2 {
+                font-size: 8pt;
+            }
+
+            .col-sm-2 > h4 {
+                font-size: 14pt;
+                font-weight: 100;
+            }
+
+            th {
+                padding: 10px 5px 10px 5px;
+                font-size: 14pt;
+                font-weight: 100;
+                text-align: center;
+            }
+
+            #membersCol {
+                display: none;
+            }
+
+            .walletId {
+                font-size: 12pt;
+                font-weight: 100;
+            }
+
+        </style>
+
+    </head>
+    <body>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-2 text-center">
+                    <h4>Create contract</h4>
+
+                    <div class="qrcode"></div>
+                    <p class="qrcoderef1">Empty</p>
+
+                    <input id="createFirstname" placeholder="Firstname" value="Arwyn" autocomplete="off" /><br/>
+                    <input id="createLastname" placeholder="Lastname" value="Boiten" autocomplete="off" /><br/>
+                    <input id="createAge" placeholder="Age" value="23" autocomplete="off" />
+                    <hr>
+                    <select id="contractType">
+                        <option value="huur">Huurwoning</option>
+                        <option value="koop">Koopwoning</option>
+                        <option value="auto">Auto</option>
+                        <option value="boot">Boot</option>
+                    </select>
+                    <br/>
+                    <br/>
+                    <button id="createButton">Create</button>
+                </div>
+                <div class="col-sm-2 text-center">
+                    <h4>Join contract</h4>
+
+                    <div class="qrcode"></div>
+                    <p class="qrcoderef2">Empty</p>
+
+                    <input id="joinFirstname" placeholder="Firstname" value="Klaas" autocomplete="off" /><br/>
+                    <input id="joinLastname" placeholder="Lastname" value="de Vries" autocomplete="off" /><br/>
+                    <input id="joinAge" placeholder="Age" value="19" autocomplete="off" />
+                    <br/>
+                    <br/>
+                    <button id="joinButton">Join</button>
+                </div>
+                <div class="col-sm-2 text-center" id="sessionContainer">
+                    <b><p class="sessionId">Session ID</p></b>
+                    <p class="sessionCT">Contract</p>
+                    <table id="sessionMembers">
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!--<div class="col-sm-1 text-center">
+                    <h4>Test rule-engine</h4>
+                    <button id="testButton">Test</button>
+                </div>-->
+            </div>
+        </div>
+
+
+
+        <BR>
+        <BR>
+        <h3>Server messages - <button id="clearButton">Clear messages</button></h3>
+        <ul style="color: red" id="messages"></ul>
+
+    </body>
+</html>

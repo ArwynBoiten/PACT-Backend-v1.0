@@ -1,0 +1,1 @@
+docker build -t pact-backend:0.1 .
