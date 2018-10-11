@@ -1,59 +1,65 @@
-/*
-var lib = require('./../config/loader');
-var SessionController = require("./../services/SessionService");
-var sessionCtrl = new SessionController();
+var SessionService = new (require("./../services/SessionService"));
 
-/!*******************************
- **  SOCKET SERVER FUNCTIONS  **
- *******************************!/
-lib.io.on('connect', function(socket){
+/*******************************
+ **  SOCKET SERVER CONTROLLER  **
+ *******************************/
 
-    /!* Create new contract session *!/
-    socket.on('createSession', function(data) {
-        if(!sessionCtrl.getSessionById(data.id)){
-            var session = sessionCtrl.createSession(data.id, data.ct);
-            session.addMember(data.member);
+module.exports.listen = function(_http) {
 
-            // Create socket room with contract ID//
-            socket.join(session.getID());
-            sendSession(data.id, session);
-        } else{
-            sendErrorMessage(socket, data.id, "already exist.");
-        }
-    });
+    var io = require('socket.io')(_http);
+    io.on('connect', function (socket) {
 
-    /!* Join exisiting contract session *!/
-    socket.on('joinSession', function(data) {
-        /!* Check if session exists. *!/
-        if(sessionCtrl.getSessionById(data.id)){
-            var session = sessionCtrl.getSessionById(data.id);
-
-            /!* Check if name isn't already used. *!/
-            if(!session.getMembersByName(data.member.name)) {
+        /** Create new contract session **/
+        socket.on('createSession', function (data) {
+            if (!SessionService.getSessionById(data.id)) {
+                var session = SessionService.createSession(data.id, data.ct);
                 session.addMember(data.member);
+
+                /** Create socket room with contract ID **/
                 socket.join(session.getID());
                 sendSession(data.id, session);
             } else {
-                sendErrorMessage(socket, data.id, " User is already joined.");
+                sendErrorMessage(socket, data.id, "already exist.");
             }
-        } else {
-            sendErrorMessage(socket, data.id, "doesn't exist.");
-        }
-    });
+        });
 
-    /!* Generate contract for contract session *!/
-    socket.on('generateContent', function(data) {
-        lib.REConnector.makePostCall("rules", {age: data.age}, function(response){
-            sendErrorMessage(socket, data.contract, "{'age': " + response.data.age + ", 'result':" + response.data.result + ", 'matchPath':" + response.data.matchPath + "}");
+        /** Join exisiting contract session **/
+        socket.on('joinSession', function (data) {
+            /** Check if session exists. **/
+            if (SessionService.getSessionById(data.id)) {
+                var session = SessionService.getSessionById(data.id);
+
+                /* Check if name isn't already used. */
+                if (!session.getMembersByName(data.member.name)) {
+                    session.addMember(data.member);
+                    socket.join(session.getID());
+                    sendSession(data.id, session);
+                } else {
+                    sendErrorMessage(socket, data.id, " User is already joined.");
+                }
+            } else {
+                sendErrorMessage(socket, data.id, "doesn't exist.");
+            }
         });
     });
-});
 
-/!* Socket send functions *!/
-function sendErrorMessage(socket, contract, message){
-    socket.emit('errorMessage', "[ERROR] - [" + contract + "] " + message);
-}
+    /** Socket Error emit function. **/
+    function sendErrorMessage(socket, contract, message) {
+        socket.emit('errorMessage', "[ERROR] - [" + contract + "] " + message);
+    }
 
-function sendSession(roomName, session){
-    lib.io.to(roomName).emit('session', session);
-}*/
+    /** Socket send function. **/
+    function sendSession(roomName, session) {
+        io.to(roomName).emit('session', session);
+    }
+};
+
+
+/** CODE SNIPPET **/
+
+/** Generate contract for contract session **/
+/*socket.on('generateContent', function (data) {
+ lib.REConnector.makePostCall("rules", {age: data.age}, function (response) {
+ sendErrorMessage(socket, data.contract, "{'age': " + response.data.age + ", 'result':" + response.data.result + ", 'matchPath':" + response.data.matchPath + "}");
+ });
+ });*/

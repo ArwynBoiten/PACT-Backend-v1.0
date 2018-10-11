@@ -5,8 +5,7 @@ var PACTFactoryContract = null;
 function PACTFactoryService() {
 
     PACTFactoryContract = EthereumService.getContract(
-        CONF.ETHEREUM.SC_PACTFACTORY.ABI,
-        _ADDRESS
+        CONF.ETHEREUM.SC_PACTFACTORY.ABI
     );
 };
 
