@@ -1,12 +1,9 @@
-var SessionService = new (require("./../services/SessionService"));
-
 /*******************************
  **  SOCKET SERVER CONTROLLER  **
  *******************************/
 
-module.exports.listen = function(_http) {
+module.exports.listen = function(io, SessionService) {
 
-    var io = require('socket.io')(_http);
     io.on('connect', function (socket) {
 
         /** Create new contract session **/
