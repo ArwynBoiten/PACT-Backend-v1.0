@@ -1,19 +1,17 @@
 var CONF = require("./../config/config");
-var EthereumService = require("./EthereumService");
-
-var ethService = new EthereumService();
+var EthereumService = new (require("./EthereumService"))();
 var PACTFactoryContract = null;
 
-var PACTFactoryService = function() {
+function PACTFactoryService() {
 
-    PACTFactoryContract = ethService.getContract(
-        CONF.ETHEREUM.SC_CONTRACT.ABI,
-        CONF.ETHEREUM.SC_CONTRACT.ADDRESS
+    PACTFactoryContract = EthereumService.getContract(
+        CONF.ETHEREUM.SC_PACTFACTORY.ABI,
+        _ADDRESS
     );
 };
 
 PACTFactoryService.prototype.getData = function(){
-    var txOptions = ethService.getTXOptions();
+    var txOptions = EthereumService.getTXOptions();
     return PACTFactoryContract.methods.getData().call(txOptions);
 };
 

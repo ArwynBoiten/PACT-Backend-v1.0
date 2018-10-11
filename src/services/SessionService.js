@@ -6,7 +6,7 @@ var ContractType = require("../models/session/contractType.js");
 var sessions = [];
 
 /** Constructor **/
-var SessionService = function(){
+function SessionService(){
     this.sessions = [];
 };
 

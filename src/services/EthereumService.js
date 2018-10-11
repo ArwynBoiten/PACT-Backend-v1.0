@@ -4,7 +4,7 @@ const web3 = new Web3(new Web3.providers.HttpProvider(CONF.INFURA.API_ENDPOINT))
 
 /** ETHEREUM SERVICE INTERFACE **/
 /** Make connection to the Ethereum network **/
-var EthereumService = function(){};
+function EthereumService(){};
 
 /** Set default Ethereum account based on private Key **/
 /** @Input Private key of ethereum wallet **/
