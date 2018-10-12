@@ -11,4 +11,4 @@ RUN cd /src; npm install
 COPY . /src
 
 EXPOSE  3010
-CMD ["/usr/bin/node", "/src/src/server.js"]
+CMD ["/usr/bin/node", "/src/src/app.js"]

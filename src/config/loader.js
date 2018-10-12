@@ -18,16 +18,16 @@ app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
 /** Make instances of Services. **/
-var EthereumService = new (require("./../services/EthereumService"));
-var SessionService = new (require("./../services/SessionService"));
-var ContractService = new (require("./../services/ContractService"))();
-var PACTFactoryService = new (require("./../services/PACTFatoryService"))();
+var EthereumService = new (require("./../ethereum/EthereumService"));
+var SessionService = new (require("./../session/SessionService"));
+var ContractService = new (require("./../ethereum/ContractService"))();
+var PACTFactoryService = new (require("./../ethereum/PACTFatoryService"))();
 
 /** Make instances of Controllers. **/
-require("./../controllers/HttpController").http_listen(http, config);
-require("./../controllers/HttpController").app_listen(app, config, path);
-require("./../controllers/SessionController").listen(io, SessionService);
-require("./../controllers/EthereumController").listen(app, PACTFactoryService, ContractService);
+require("./../http/HttpController").http_listen(http, config);
+require("./../http/HttpController").app_listen(app, config, path);
+require("./../session/SessionController").listen(io, SessionService);
+require("./../ethereum/EthereumController").listen(app, PACTFactoryService, ContractService);
 
 module.exports = {
     app: app,
@@ -36,3 +36,6 @@ module.exports = {
     config: config,
     REConnector: REConnector
 }
+
+
+// Author: Arwyn Boiten

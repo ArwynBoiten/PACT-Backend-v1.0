@@ -1,6 +1,6 @@
 /** Import models **/
-var Session = require("../models/session/session.js");
-var ContractType = require("../models/session/contractType.js");
+var Session = require("./models/session.js");
+var ContractType = require("./models/contractType.js");
 
 /** Data save **/
 var sessions = [];

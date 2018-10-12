@@ -1,6 +1,6 @@
 var CONF = require("./../config/config");
 var EthereumService = new (require("./EthereumService"))();
-var ContractModel = require("./../models/ethereum/Contract");
+var ContractModel = require("./models/Contract");
 
 
 function ContractService() {};

@@ -8,7 +8,7 @@ const web3 = new Web3(new Web3.providers.HttpProvider(CONF.INFURA.API_ENDPOINT))
 function EthereumService (){};
 
 /** Set default Ethereum account based on private Key **/
-/** @Input Private key of ethereum wallet **/
+/** @Input Private key of models wallet **/
 EthereumService.prototype.setDefaultAccount = function(_privateKey){
     var account = web3.eth.accounts.privateKeyToAccount(_privateKey).address;
     web3.eth.defaultAccount = account;
