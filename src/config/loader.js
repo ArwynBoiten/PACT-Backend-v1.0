@@ -29,6 +29,8 @@ require("./../http/HttpController").app_listen(app, config, path);
 require("./../session/SessionController").listen(io, SessionService);
 require("./../ethereum/EthereumController").listen(app, PACTFactoryService, ContractService);
 
+//PACTFactoryService.createContract("0x4ed14a80bc682d3506d46ff599157bdbb2d705b3", "0x23f20b4b1d01cdc73f945ed40180fcc58620cebea26dd79f67b779c8f0a1245e");
+
 module.exports = {
     app: app,
     http: http,

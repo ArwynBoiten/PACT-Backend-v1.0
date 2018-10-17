@@ -40,5 +40,19 @@ EthereumService.prototype.getTXOptions = function () {
     };
 };
 
+EthereumService.prototype.sendSignedTX = function (_CONTRACT, _TX, _PK, callback) {
+
+    _TX.data = _CONTRACT.encodeABI();
+    var signedTx = null;
+
+    web3.eth.accounts.signTransaction(_TX, _PK, function (error, signedTx) {
+        web3.eth.sendSignedTransaction(signedTx.rawTransaction).then(function (receipt) {
+            callback(receipt);
+        })
+    });
+
+    return signedTx;
+};
+
 
 module.exports = EthereumService;

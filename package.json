@@ -2,7 +2,7 @@
   "name": "pact-backend",
   "version": "1.0.0",
   "description": "Backend server for pact application.",
-  "main": "src/api/server.js",
+  "main": "app.js",
   "scripts": {
     "build": ". build.sh",
     "run": ". run.sh"
@@ -19,7 +19,6 @@
     "npm": "^6.4.0",
     "socket.io": "^2.1.1",
     "web3": "^1.0.0-beta.36",
-    "web3-js": "^1.0.5-beta.26",
     "ws": "^5.2.0"
   }
 }

@@ -16,6 +16,8 @@ module.exports.listen = function(app, PACTFactoryService, ContractService) {
 
 
     app.post('/eth/factory', function (req, res) {
-        PACTFactoryService.getData();
+        PACTFactoryService.createContract(req.body.privateKey, req.body.data, function(result){
+            res.send("https://kovan.etherscan.io/tx/" + result.transactionHash);
+        });
     });
 }
