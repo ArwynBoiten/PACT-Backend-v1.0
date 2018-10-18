@@ -59,45 +59,63 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-sm-2 text-center">
-                    <h4>Create contract</h4>
+                    <h4>Create session</h4>
 
                     <div class="qrcode"></div>
-                    <p class="qrcoderef1">Empty</p>
+                    <input class="sessionID1" placeholder="default" /><br/><br/>
 
                     <input id="createFirstname" placeholder="Firstname" value="Arwyn" autocomplete="off" /><br/>
                     <input id="createLastname" placeholder="Lastname" value="Boiten" autocomplete="off" /><br/>
-                    <input id="createAge" placeholder="Age" value="23" autocomplete="off" />
+                    <input id="createAge" placeholder="Age" value="23" autocomplete="off" /><br/><br/>
+
+                    <input id="createPublicKey" disabled placeholder="Public Key" value="0x5bcb19f00e6725d0bc337af763289ea237905083" autocomplete="off">
+                    <input id="createPrivateKey" type="hidden" disabled placeholder="Private Key" value="0x23f20b4b1d01cdc73f945ed40180fcc58620cebea26dd79f67b779c8f0a1245e" autocomplete="off">
                     <hr>
-                    <select id="contractType">
-                        <option value="huur">Huurwoning</option>
-                        <option value="koop">Koopwoning</option>
-                        <option value="auto">Auto</option>
-                        <option value="boot">Boot</option>
-                    </select>
                     <br/>
                     <br/>
                     <button id="createButton">Create</button>
                 </div>
-                <div class="col-sm-2 text-center">
-                    <h4>Join contract</h4>
+                <div class="col-sm-2 text-center" id="joinContainer" style="display: none">
+                    <h4>Join session</h4>
 
                     <div class="qrcode"></div>
-                    <p class="qrcoderef2">Empty</p>
+                    <input class="sessionID2" placeholder="default" /> <br/><br/>
 
                     <input id="joinFirstname" placeholder="Firstname" value="Klaas" autocomplete="off" /><br/>
                     <input id="joinLastname" placeholder="Lastname" value="de Vries" autocomplete="off" /><br/>
-                    <input id="joinAge" placeholder="Age" value="19" autocomplete="off" />
+                    <input id="joinAge" placeholder="Age" value="19" autocomplete="off" /><br/><br/>
+
+                    <input id="joinPublicKey" disabled placeholder="Public Key" value="0x7a9beb05101cd693f38ecd73ed15c6f0fda99155" autocomplete="off">
+                    <input id="joinPrivateKey" type="hidden" disabled placeholder="Private Key" value="0xbfadac44f2f4bc1c89d5464163e35c803d542c8d1b3acc1fc326a833522ce14f" autocomplete="off">
+                    <hr>
                     <br/>
                     <br/>
                     <button id="joinButton">Join</button>
                 </div>
-                <div class="col-sm-2 text-center" id="sessionContainer">
-                    <b><p class="sessionId">Session ID</p></b>
+
+                <div class="col-sm-2 text-center" id="presetContainer" style="display: none">
+                    <h4>Create contract</h4>
+                    <button id="loadPresets">Load presets</button>
+                    <br/>
+                    <br/>
+                    <select id="contractType"></select>
+                    <button id="submitPreset">Update</button>
+                </div>
+
+
+                <div class="col-sm-2 text-center" id="sessionContainer" style="display: none">
+                    <b><p class="sessionId" style="margin: 0">Session ID</p></b>
                     <p class="sessionCT">Contract</p>
-                    <table id="sessionMembers">
-                        <tbody>
-                        </tbody>
-                    </table>
+                    <center>
+                        <table id="sessionMembers">
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </center>
+                    </hr>
+                    <br/>
+                    <br/>
+                    <button id="generateContract">Generate</button>
                 </div>
 
                 <!--<div class="col-sm-1 text-center">

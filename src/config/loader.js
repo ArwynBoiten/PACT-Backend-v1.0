@@ -20,14 +20,16 @@ app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 /** Make instances of Services. **/
 var EthereumService = new (require("./../ethereum/EthereumService"));
 var SessionService = new (require("./../session/SessionService"));
-var ContractService = new (require("./../ethereum/ContractService"))();
-var PACTFactoryService = new (require("./../ethereum/PACTFatoryService"))();
+var SC_ContractService = new (require("./../ethereum/SC_ContractService"))();
+var PACTFactoryService = new (require("./../ethereum/SC_PACTFatoryService"))();
+var ContractService = new (require("./../contract/ContractService"));
+var PresetService = new (require("./../contract/PresetService"));
 
 /** Make instances of Controllers. **/
 require("./../http/HttpController").http_listen(http, config);
 require("./../http/HttpController").app_listen(app, config, path);
-require("./../session/SessionController").listen(io, SessionService);
-require("./../ethereum/EthereumController").listen(app, PACTFactoryService, ContractService);
+require("./../session/SessionController").listen(io, SessionService, ContractService, PresetService);
+require("./../ethereum/EthereumController").listen(app, PACTFactoryService, SC_ContractService);
 
 //PACTFactoryService.createContract("0x4ed14a80bc682d3506d46ff599157bdbb2d705b3", "0x23f20b4b1d01cdc73f945ed40180fcc58620cebea26dd79f67b779c8f0a1245e");
 

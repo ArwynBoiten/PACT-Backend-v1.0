@@ -12,7 +12,7 @@ Session.prototype.addMember = function (member) {
     this.members.push(member);
 }
 
-Session.prototype.editContractType = function (ct) {
+Session.prototype.setContractType = function (ct) {
     this.contractType = ct;
 }
 

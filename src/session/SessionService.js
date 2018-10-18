@@ -1,6 +1,5 @@
 /** Import models **/
 var Session = require("./models/session.js");
-var ContractType = require("./models/contractType.js");
 
 /** Data save **/
 var sessions = [];
@@ -11,9 +10,8 @@ function SessionService(){
 };
 
 /** Helper functions **/
-SessionService.prototype.createSession = function(id, _ct){
-    var ct = new ContractType(_ct);
-    var session = new Session(id, ct);
+SessionService.prototype.createSession = function(id){
+    var session = new Session(id, null);
 
     this.sessions.push(session);
     return session;
