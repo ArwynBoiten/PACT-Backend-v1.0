@@ -6,6 +6,21 @@ $(function() {
     generateQRCode();
 });
 
+function createRoleFields(presetTemplate){
+
+    var roles = presetTemplate.template.roles;
+
+    for(index in roles){
+        $('#role1')
+            .append($('<option>', { value : index })
+                .text(roles[index].name));
+
+        $('#role2')
+            .append($('<option>', { value : index })
+                .text(roles[index].name));
+    }
+}
+
 var socket = io.connect();
 
 socket.on('errorMessage', function(data) {
@@ -24,7 +39,13 @@ socket.on('session', function (data) {
     // Fill ID & Contract section. //
     $('.sessionId').text(data.id);
     if(data.contractType) {
-        $('.sessionCT').text(data.contractType.name);
+        $('.sessionCT').text(data.contractType.template.name);
+        $('#role1').show();
+        $('#role2').show();
+
+        createRoleFields(data.contractType);
+
+
     } else {
         $('.sessionCT').text("Contract");
     }
@@ -41,6 +62,7 @@ socket.on('presets', function (data) {
                 .append($('<option>', { value : index })
                     .text(index));
         }
+
 });
 
 socket.on('connect', function() {

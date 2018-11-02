@@ -1,15 +1,15 @@
 var template = {
-    name: "Auto Verhuur",
+    name: "Test",
     description: "Contract voor het verhuren van auto's",
     roles: [
         {
-            name: "Owner",
+            name: "owner",
             fields: [
                 "object"
             ]
         },
         {
-            name: "Renter",
+            name: "renter",
             fields: [
                 "age",
                 "licenseType"

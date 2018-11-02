@@ -1,8 +1,9 @@
 /** Import presets **/
 var CarRent = require("./presets/CarRent");
+var Test = require("./presets/Test");
 var presets = {
-    Autoverhuur: CarRent.template,
-    Klaas: CarRent.template
+    Autoverhuur: CarRent,
+    Test: Test
 };
 
 /** Constructor **/

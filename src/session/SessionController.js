@@ -5,6 +5,10 @@
 module.exports.listen = function(io, SessionService, ContractService, PresetService) {
 
     io.on('connect', function (socket) {
+        
+        socket.on('getData', function () {
+
+        });
 
         /** Create new contract models **/
         socket.on('createSession', function (data) {
@@ -15,6 +19,9 @@ module.exports.listen = function(io, SessionService, ContractService, PresetServ
                 /** Create socket room with contract ID **/
                 socket.join(session.getID());
                 sendSession(data.id, session);
+
+                var presets = PresetService.getPresetList();
+                sendPresetList(data.id, presets);
             } else {
                 sendErrorMessage(socket, data.id, "already exist.");
             }
@@ -29,8 +36,8 @@ module.exports.listen = function(io, SessionService, ContractService, PresetServ
                 var error = null;
 
                 if(preset){
-                    if(preset.member_limit == session.getMembers().length) {
-                        error = " Member limit is reached for this preset (" + preset.member_limit + ").";
+                    if(session.getMembers().length >= preset.template.member_limit ) {
+                        error = " Member limit is reached for this preset (" + preset.template.member_limit + ").";
                     }
                 }
                 if (session.getMembersByName(data.member.name)) {
@@ -66,7 +73,7 @@ module.exports.listen = function(io, SessionService, ContractService, PresetServ
                 var session = SessionService.getSessionById(data.id);
                 var preset = PresetService.getPreset(data.ct);
 
-                if(session.getMembers().length > preset.member_limit){
+                if(session.getMembers().length > preset.template.member_limit){
                     sendErrorMessage(socket, data.id, " Session contains too much members for this preset.");
                 } else {
                     session.setContractType(preset);
