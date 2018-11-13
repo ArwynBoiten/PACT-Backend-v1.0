@@ -6,14 +6,14 @@ A step by step series of commands that tell you how to get the application runni
 
  Clone the project
 ```
-git clone https://github.com/ArwynBoiten/PACTBackend.git
+git clone https://github.com/ArwynBoiten/PACT-Backend-v1.0.git
 ```
 
 <BR/>
 Navigate into the directory of the repository you just created.
 
 ```
-cd PACTBackend
+cd PACT-Backend-v1.0/src/scripts
 ```
 
 <BR/>
