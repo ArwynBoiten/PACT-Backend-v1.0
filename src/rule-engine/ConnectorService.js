@@ -5,10 +5,9 @@
 const axios = require('axios');
 const config = require('../config/config');
 
-
 module.exports = {
-    makePostCall: function (endpoint, body, callback) {
-        axios.post(config.RULEENGINE.HOST + ":" + config.RULEENGINE.PORT + config.RULEENGINE.ENDPOINT, body)
+    runEngineWithPreset: function(body, endpoint, callback){
+        axios.post(config.RULEENGINE.HOST + ":" + config.RULEENGINE.PORT + config.RULEENGINE.ENDPOINT + "/preset/" + endpoint, body)
             .then(function (response) {
                 return callback(response);
             })
@@ -16,5 +15,5 @@ module.exports = {
                 return callback(error);
             });
     }
-}
+};
 

@@ -1,53 +1,54 @@
 var template = {
     name: "Auto Verhuur",
+    index: 0,
     description: "Contract voor het verhuren van auto's",
     roles: [
         {
-            name: "Owner",
+            name: "Eigenaar",
             fields: [
-                "object"
+                {
+                    name: "object",
+                    label: "Object",
+                    type: "object",
+                    fields: [
+                        {
+                            name: "name",
+                            label: "Naam",
+                            type: "text",
+                            data: "Porsche Panamera"
+                        },
+                        {
+                            name: "kenmerk",
+                            label: "Kenmerk (Object met..)",
+                            type: "text",
+                            data: "een rode kleur"
+                        },
+                        {
+                            name: "price",
+                            label: "Prijs",
+                            type: "number",
+                            data: 123000
+                        }
+                    ]
+                }
             ]
         },
         {
-            name: "Renter",
+            name: "Huurder",
             fields: [
-                "age",
-                "licenseType"
+                {
+                    name: "age",
+                    label: "Leeftijd",
+                    type: "number",
+                    data: 23
+                },
+                {
+                    name: "licenseType",
+                    label: "Rijbewijstype",
+                    type: "text",
+                    data: "B"
+                },
             ]
-        }
-    ],
-    fields: [
-        {
-            name: "age",
-            label: "Age",
-            type: "number"
-        },
-        {
-            name: "licenseType",
-            label: "Rijbewijstype",
-            type: "text"
-        },
-        {
-            name: "object",
-            label: "Object",
-            type: "object",
-            fields: [
-                    {
-                        name: "name",
-                        label: "Naam",
-                        type: "text"
-                    },
-                    {
-                        name: "kenmerk",
-                        label: "Kenmerk",
-                        type: "text"
-                    },
-                    {
-                        name: "price",
-                        label: "Prijs",
-                        type: "number"
-                    }
-                ]
         }
     ],
     rule_preset: "carRent",

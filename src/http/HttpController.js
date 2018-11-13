@@ -19,4 +19,8 @@ module.exports.app_listen = function(_app, CONFIG, path) {
     _app.get('/dist/socketClient.js', function (req, res) {
         res.sendFile(path.join(__dirname,  CONFIG.APP.PUBLIC + 'dist/socketClient.js'));
     });
+
+    _app.get('/dist/socketTest.js', function (req, res) {
+        res.sendFile(path.join(__dirname,  CONFIG.APP.PUBLIC + 'dist/socketTest.js'));
+    });
 }

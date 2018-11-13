@@ -14,8 +14,8 @@ PresetService.prototype.getPresetList = function(){
     return presets;
 };
 
-PresetService.prototype.getPreset = function (presetName) {
-    return presets[presetName];
+PresetService.prototype.getPreset = function (index) {
+    return presets[Object.keys(presets)[index]];
 };
 
 module.exports = PresetService;

@@ -91,7 +91,8 @@ socket.on('connect', function() {
                 name: $('#joinFirstname').val() + " " + $('#joinLastname').val(),
                 age: $('#joinAge').val(),
                 public: $('#joinPublicKey').val(),
-                private: $('#joinPrivateKey').val()
+                private: $('#joinPrivateKey').val(),
+                role: {name: 'Owner'}
             }
         }
 
